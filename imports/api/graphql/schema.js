@@ -19,7 +19,7 @@ export const typeDefs = `
   type Admin {
     prenom: String
     nom: String
-    dateDeNaissance: String
+    date_de_naissance: String
     Genre: String
   }
   type PatientDatas {
@@ -30,8 +30,13 @@ export const typeDefs = `
     parametres: Parametres
     assuetudes: Assuetudes
   }
+  type PatientIdentity {
+    name: String
+    id: Int
+  }
   type Query {
     patientsDatas(targetedPatientsIds: [Int]): [PatientDatas]
+    patientsToTarget: [PatientIdentity]
   }
   type Schema {
     query: Query

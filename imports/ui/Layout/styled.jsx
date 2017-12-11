@@ -61,6 +61,7 @@ const Menu = styled.nav`
   margin: 0;
   padding: 0 100px 0 140px;
   justify-content: flex-end;
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,.8);
   @media all and (max-width: 1280px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -70,7 +71,7 @@ const Menu = styled.nav`
   }
 `;
 
-const Dir = styled(Link)`
+const Target = styled(Link)`
   display: inline-block;
   position: relative;
   width: auto;
@@ -79,10 +80,24 @@ const Dir = styled(Link)`
   padding: 0 18px;
   margin: 0 30px;
   text-decoration: none;
-  color: white;
+  color: ${props => {switch(props.number){
+    case 0:
+      return '#2867a7';break;
+    case 1:
+      return '#4eaeba';break;
+    case 2:
+      return '#ff70ab';break;
+    case 3:
+      return '#f90a6e';break;
+    default:
+      return 'black';
+  }}};
   font-weight: 200;
   font-size: 18px;
-  color: black;
+  @media all and (max-width: 1280px) {
+    border-top: black solid 1px;
+    margin: 0;
+  }
 `;
 
 const MenuButton = styled.button`
@@ -155,7 +170,7 @@ export {
   StyledHeader,
   MainTitle,
   Menu,
-  Dir,
+  Target,
   MenuButton,
   Icon,
   Page,
