@@ -5,36 +5,33 @@ import gql from 'graphql-tag';
 //Permet l'accès à redux
 import { connect } from 'react-redux';
 //Composants stylisés
-import homeComponents from './styled.jsx';
-//Nécéssaire pour formatter la date de naissance
-import moment from 'moment';
+import homeComponents from './styled.js';
 
-const { Page, List, Listed, Row, Name, Cat, Cell } = homeComponents;
+// composant affichant l'ensemble des données du patient dans un tableau
+import PatientDataTable from '/imports/ui/DataVisualization/PatientDataTable/PatientDataTable.jsx';
+// composant montant les graphiques à barettes.
+import Graph from '/imports/ui/DataVisualization/Graph/Graph.jsx';
+
+const { Page, Container, List } = homeComponents;
 
 const Home = (props) => (
   <Page>
     {(props.data.loading || props.data.error) ? <span>Chargement ...</span> : (
-      <List>
-        {props.data.patientsDatas.map((patient, index)=>(
-          <Listed number={index} key={index}>
-            <Name>{`${patient.admin.prenom} ${patient.admin.nom}`}</Name>
-            <Row><Cell>Date de naissance:</Cell><Cell>{moment(patient.admin.date_de_naissance).format('DD-MM-YYYY')}</Cell></Row>
-            <Row><Cell>Genre:</Cell><Cell>{patient.admin.Genre}</Cell></Row>
-            <Row><Cell>ID:</Cell><Cell>{patient.id}</Cell></Row>
-            <Cat>Biométrie</Cat>
-            <Row><Cell>Poids:</Cell><Cell>{patient.biometrie.poids}Kg</Cell></Row>
-            <Row><Cell>Taille:</Cell><Cell>{patient.biometrie.taille}cm</Cell></Row>
-            <Cat>Constantes biologiques</Cat>
-            <Row><Cell>HbA1c:</Cell><Cell>{patient.const_biologique.HbA1c}</Cell></Row>
-            <Row><Cell>Cholesterol total:</Cell><Cell>{patient.const_biologique.Cholesterol_total}mg/dl</Cell></Row>
-            <Row><Cell>Cholesterol HDL:</Cell><Cell>{patient.const_biologique.Cholesterol_HDL}mg/dl</Cell></Row>
-            <Cat>Paramètres</Cat>
-            <Row><Cell>PSS:</Cell><Cell>{patient.parametres.PSS}mmHg</Cell></Row>
-            <Cat>Assuétudes</Cat>
-            <Row><Cell>Conso. tabagique:</Cell><Cell>{patient.assuetudes.Consommation_tabagique}</Cell></Row>
-          </Listed>
-        ))}
-      </List>
+      <Container>
+        <List>
+          {props.data.patientsDatas.map((patient, index)=>(
+            <PatientDataTable patient={patient} number={index} key={index} />
+          ))}
+        </List>
+        <List>
+          <Graph toEval={{
+            title: 'Cholesterol total', order: '40', unit: 'mg/dl'
+          }} patientsValues={props.data.patientsDatas.map((patient, index)=>( patient.const_biologique.Cholesterol_total ))}/>
+          <Graph toEval={{
+            title: 'Cholesterol HDL', order: '10', unit: 'mg/dl'
+          }}  patientsValues={props.data.patientsDatas.map((patient, index)=>( patient.const_biologique.Cholesterol_HDL ))}/>
+        </List>
+      </Container>
     )}
   </Page>
 );
