@@ -9,22 +9,32 @@ import homeComponents from './styled.jsx';
 //Nécéssaire pour formatter la date de naissance
 import moment from 'moment';
 
-const { Page } = homeComponents;
+const { Page, List, Listed, Row, Name, Cat, Cell } = homeComponents;
 
 const Home = (props) => (
   <Page>
     {(props.data.loading || props.data.error) ? <span>Chargement ...</span> : (
-      <ul>
+      <List>
         {props.data.patientsDatas.map((patient, index)=>(
-          <li key={index}>
-            <div><strong>{`${patient.admin.prenom} ${patient.admin.nom}`}</strong></div>
-            <div><span>Date de naissance:</span><span>{moment(patient.admin.date_de_naissance).format('DD-MM-YYYY')}</span></div>
-            <div><span>Genre:</span><span>{patient.admin.Genre}</span></div>
-            <div><strong>Biométrie</strong></div>
-            {console.log(patient)}
-          </li>
+          <Listed number={index} key={index}>
+            <Name>{`${patient.admin.prenom} ${patient.admin.nom}`}</Name>
+            <Row><Cell>Date de naissance:</Cell><Cell>{moment(patient.admin.date_de_naissance).format('DD-MM-YYYY')}</Cell></Row>
+            <Row><Cell>Genre:</Cell><Cell>{patient.admin.Genre}</Cell></Row>
+            <Row><Cell>ID:</Cell><Cell>{patient.id}</Cell></Row>
+            <Cat>Biométrie</Cat>
+            <Row><Cell>Poids:</Cell><Cell>{patient.biometrie.poids}Kg</Cell></Row>
+            <Row><Cell>Taille:</Cell><Cell>{patient.biometrie.taille}cm</Cell></Row>
+            <Cat>Constantes biologiques</Cat>
+            <Row><Cell>HbA1c:</Cell><Cell>{patient.const_biologique.HbA1c}</Cell></Row>
+            <Row><Cell>Cholesterol total:</Cell><Cell>{patient.const_biologique.Cholesterol_total}mg/dl</Cell></Row>
+            <Row><Cell>Cholesterol HDL:</Cell><Cell>{patient.const_biologique.Cholesterol_HDL}mg/dl</Cell></Row>
+            <Cat>Paramètres</Cat>
+            <Row><Cell>PSS:</Cell><Cell>{patient.parametres.PSS}mmHg</Cell></Row>
+            <Cat>Assuétudes</Cat>
+            <Row><Cell>Conso. tabagique:</Cell><Cell>{patient.assuetudes.Consommation_tabagique}</Cell></Row>
+          </Listed>
         ))}
-      </ul>
+      </List>
     )}
   </Page>
 );
@@ -44,16 +54,16 @@ const queryPatientsDatas = gql`
         poids
         taille
       }
-      constBiologique {
+      const_biologique {
         HbA1c
-        cholesterolTotal
-        cholesterolHDL
+        Cholesterol_total
+        Cholesterol_HDL
       }
       parametres {
         PSS
       }
       assuetudes {
-        consommationTabagique
+        Consommation_tabagique
       }
     }
   }

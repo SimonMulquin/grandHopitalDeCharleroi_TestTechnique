@@ -2,15 +2,15 @@ import { buildSchema } from 'graphql';
 
 export const typeDefs = `
   type Assuetudes {
-    consommationTabagique: Int
+    Consommation_tabagique: Int
   }
   type Parametres {
     PSS: Int
   }
   type ConstBiologique {
     HbA1c: Float
-    cholesterolTotal: Int
-    cholesterolHDL: Int
+    Cholesterol_total: Int
+    Cholesterol_HDL: Int
   }
   type Biometrie {
     poids: Int
@@ -26,7 +26,7 @@ export const typeDefs = `
     id: Int
     admin: Admin
     biometrie: Biometrie
-    constBiologique: ConstBiologique
+    const_biologique: ConstBiologique
     parametres: Parametres
     assuetudes: Assuetudes
   }
