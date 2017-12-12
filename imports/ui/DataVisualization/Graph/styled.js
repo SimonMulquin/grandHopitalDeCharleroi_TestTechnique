@@ -20,6 +20,7 @@ const components = {
     padding: 0 0 30px 30px;
     margin: 0 auto;
     background-color: rgba(0,0,0,.2);
+    overflow: hidden;
   `,
   Title: styled.h4`
     display: block;
@@ -41,6 +42,29 @@ const components = {
     border-left: solid black 1px;
     border-bottom: solid black 1px;
     text-align: left;
+  `,
+  Unit: styled.span`
+    display: block;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    left: -10%;
+    top: -26px;
+    color: grey;
+  `,
+  Level: styled.span`
+    display: block;
+    position: absolute;
+    width: 110%;
+    height: auto;
+    left: -10%;
+    bottom: ${props => props.position};
+    padding: 0;
+    margin: 0;
+    border-bottom: grey solid 1px;
+    color: grey;
   `,
   Bars: styled.div`
     display: block;
@@ -73,6 +97,26 @@ const components = {
       default:
         return 'black';
     }}};
+  `,
+  ID: styled.span`
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    top: 100%;
+  `,
+  X: styled.span`
+    display: block;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    top: 100%;
+    left: -10%;
   `
 };
 

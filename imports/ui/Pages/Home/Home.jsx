@@ -26,10 +26,10 @@ const Home = (props) => (
         <List>
           <Graph toEval={{
             title: 'Cholesterol total', order: '40', unit: 'mg/dl'
-          }} patientsValues={props.data.patientsDatas.map((patient, index)=>( patient.const_biologique.Cholesterol_total ))}/>
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_total, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
             title: 'Cholesterol HDL', order: '10', unit: 'mg/dl'
-          }}  patientsValues={props.data.patientsDatas.map((patient, index)=>( patient.const_biologique.Cholesterol_HDL ))}/>
+          }}  items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_HDL, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
         </List>
       </Container>
     )}
