@@ -29,6 +29,9 @@ const homeComponents = {
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
+    @media all and (max-width: 720px) {
+      justify-content: space-around
+    }
   `
 };
 

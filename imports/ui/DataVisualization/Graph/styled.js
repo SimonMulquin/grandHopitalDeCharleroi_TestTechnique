@@ -6,7 +6,7 @@ const components = {
   Container: styled.li`
     display: inline-block;
     position: relative;
-    width: 50%;
+    width: 350px;
     height: auto;
     padding: 16px;
     margin: 0;
@@ -15,8 +15,8 @@ const components = {
   Background: styled.div`
     dislay: inline-block;
     position: relative;
-    width: 350px;
-    height: 390px;
+    width: 100%;
+    height: 393px;
     padding: 0 0 30px 30px;
     margin: 0 auto;
     background-color: rgba(0,0,0,.2);

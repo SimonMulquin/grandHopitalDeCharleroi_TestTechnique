@@ -22,14 +22,12 @@ const Home = (props) => (
           {props.data.patientsDatas.map((patient, index)=>(
             <PatientDataTable patient={patient} number={index} key={index} />
           ))}
-        </List>
-        <List>
           <Graph toEval={{
             title: 'Cholesterol total', order: '40', unit: 'mg/dl'
           }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_total, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
             title: 'Cholesterol HDL', order: '10', unit: 'mg/dl'
-          }}  items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_HDL, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_HDL, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
         </List>
       </Container>
     )}
