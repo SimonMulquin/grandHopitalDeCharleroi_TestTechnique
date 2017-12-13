@@ -17,7 +17,7 @@ const Graph = ({toEval: {title, order, unit}, items})=>(
         <Unit>{unit}</Unit>
         <Bars>
           {items.map((item, index)=>(
-            <Bar title={`${item.value}+${unit}`} key={index} number={index} height={`${item.value/order*26}px`}>
+            <Bar title={`${item.value}${unit}`} key={index} number={index} height={`${item.value/order*26}px`}>
               <ID title={item.name}>{item.id}</ID>
             </Bar>
           ))}

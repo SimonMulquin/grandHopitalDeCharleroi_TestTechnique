@@ -50,16 +50,16 @@ const components = {
     height: auto;
     padding: 0;
     margin: 0;
-    left: -10%;
+    left: -11%;
     top: -26px;
     color: grey;
   `,
   Level: styled.span`
     display: block;
     position: absolute;
-    width: 110%;
+    width: 111%;
     height: auto;
-    left: -10%;
+    left: -11%;
     bottom: ${props => props.position};
     padding: 0;
     margin: 0;
@@ -116,7 +116,7 @@ const components = {
     padding: 0;
     margin: 0;
     top: 100%;
-    left: -10%;
+    left: -11%;
   `
 };
 

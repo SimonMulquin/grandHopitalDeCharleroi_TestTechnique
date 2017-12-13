@@ -3,6 +3,8 @@ import React from 'react';
 import components from './styled.js';
 //Nécéssaire pour formatter la date de naissance
 import moment from 'moment';
+//calcul du BMI/IMC
+import imc from '/imports/ui/DataVisualization/utils/imc.js';
 
 const { Listed, Row, Name, Cat, Cell } = components;
 

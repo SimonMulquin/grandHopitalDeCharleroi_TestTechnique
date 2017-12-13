@@ -11,6 +11,11 @@ import homeComponents from './styled.js';
 import PatientDataTable from '/imports/ui/DataVisualization/PatientDataTable/PatientDataTable.jsx';
 // composant montant les graphiques à barettes.
 import Graph from '/imports/ui/DataVisualization/Graph/Graph.jsx';
+//Nécéssaire pour calculler l'age
+import moment from 'moment';
+const regex = '([^\s]+)';
+//calcul du BMI/IMC
+import imc from '/imports/ui/DataVisualization/utils/imc.js';
 
 const { Page, Container, List } = homeComponents;
 
@@ -22,12 +27,25 @@ const Home = (props) => (
           {props.data.patientsDatas.map((patient, index)=>(
             <PatientDataTable patient={patient} number={index} key={index} />
           ))}
+          {props.data.patientsDatas.map((patient, index)=>(console.log(moment(patient.admin.date_de_naissance, "YYYYMMDD").fromNow())))}
+          <Graph toEval={{
+            title: 'BMI/IMC', order: '5', unit: ' '
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: imc(patient.biometrie.poids, patient.biometrie.taille), id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
+          <Graph toEval={{
+            title: 'HbA1c', order: '0.02', unit: ' '
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.HbA1c, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
             title: 'Cholesterol total', order: '40', unit: 'mg/dl'
           }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_total, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
             title: 'Cholesterol HDL', order: '10', unit: 'mg/dl'
           }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.const_biologique.Cholesterol_HDL, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
+          <Graph toEval={{
+            title: 'PSS', order: '20', unit: 'mmHg'
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.parametres.PSS, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
+          <Graph toEval={{
+            title: 'Conso. tabagique', order: '10', unit: 'paquet/année'
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.assuetudes.Consommation_tabagique, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
         </List>
       </Container>
     )}
