@@ -1,12 +1,14 @@
 import React from 'react';
 //Composants stylisés
 import components from './styled.js';
+//Permet l'accès à redux
+import { connect } from 'react-redux';
 
 const { Container, Background, Title, XY, Unit, Level, Bars, Bar, ID, X } = components;
 
 const levels = [1,2,3,4,5,6,7,8,9,10];
 
-const Graph = ({toEval: {title, order, unit}, items})=>(
+const Graph = ({toEval: {title, order, unit}, items, graphsToShow })=>{ if(_.some(graphsToShow, (name)=>(name === title))) { return (
   <Container>
     <Background>
       <Title>{title}</Title>
@@ -25,7 +27,15 @@ const Graph = ({toEval: {title, order, unit}, items})=>(
         <X>IDs:</X>
       </XY>
     </Background>
-  </Container>
-);
+  </Container> )} else { return (<span></span>)}
+};
 
-export default Graph;
+const mapStateToProps = store => ({
+  graphsToShow: store.graphsToShow
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Graph);

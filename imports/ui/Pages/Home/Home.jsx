@@ -13,12 +13,12 @@ import PatientDataTable from '/imports/ui/DataVisualization/PatientDataTable/Pat
 import Graph from '/imports/ui/DataVisualization/Graph/Graph.jsx';
 //Nécéssaire pour calculler l'age
 import moment from 'moment';
-const regex = '([^\s]+)';
 //calcul du BMI/IMC
 import imc from '/imports/ui/DataVisualization/utils/imc.js';
 
 const { Page, Container, List } = homeComponents;
 
+//Page d'application, affiche les données selon les paramêtres de l'application dans redux
 const Home = (props) => (
   <Page>
     {(props.data.loading || props.data.error) ? <span>Chargement ...</span> : (
@@ -27,7 +27,9 @@ const Home = (props) => (
           {props.data.patientsDatas.map((patient, index)=>(
             <PatientDataTable patient={patient} number={index} key={index} />
           ))}
-          {props.data.patientsDatas.map((patient, index)=>(console.log(moment(patient.admin.date_de_naissance, "YYYYMMDD").fromNow())))}
+          <Graph toEval={{
+            title: 'Age', order: '10', unit: ' Années'
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: moment(patient.admin.date_de_naissance, "YYYYMMDD").fromNow().split(" ")[0], id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
             title: 'BMI/IMC', order: '5', unit: ' '
           }} items={props.data.patientsDatas.map((patient, index)=>({value: imc(patient.biometrie.poids, patient.biometrie.taille), id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
@@ -44,7 +46,7 @@ const Home = (props) => (
             title: 'PSS', order: '20', unit: 'mmHg'
           }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.parametres.PSS, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
-            title: 'Conso. tabagique', order: '10', unit: 'paquet/année'
+            title: 'Conso. tabagique', order: '10', unit: 'paquets/année'
           }} items={props.data.patientsDatas.map((patient, index)=>({value: patient.assuetudes.Consommation_tabagique, id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
         </List>
       </Container>
