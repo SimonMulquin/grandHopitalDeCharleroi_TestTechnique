@@ -11,6 +11,7 @@ import {
   StyledHeader,
   MainTitle,
   Menu,
+  ParamsButton,
   Target,
   MenuButton,
   Icon
@@ -20,11 +21,15 @@ import {
 déconstruit les props pour extraire toggleMenu et isMenuOpen, nécéssaires pour la version mobile du header.
 isMenuOpen: booleen, true: le menu est ouvert, false: le menu est fermé
 toggleMenu: prend ce booleen en argument pour inverser sa valeur
+Même fonctionnement avec les paramètres
 */
-const Header = ({toggleMenu, isMenuOpen, targetedPatients}) => (
+const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPatients}) => (
   <StyledHeader isMenuOpen={isMenuOpen}>
     <Menu>
       <MainTitle to='/' />
+      <ParamsButton onClick={()=>(toggleParams(isParamsOpen))}>
+        {isParamsOpen ? 'retour' : 'paramètres'}
+      </ParamsButton>
       {targetedPatients().map((patient, index)=>(
         <Target to='/' number={index} key={index}>{patient.name}</Target>
       ))}
@@ -41,6 +46,7 @@ const Header = ({toggleMenu, isMenuOpen, targetedPatients}) => (
 //patientsList = cette liste.
 const mapStateToProps = (store, ownProps) => ({
 	isMenuOpen: store.isMenuOpen,
+  isParamsOpen: store.isParamsOpen,
   targetedPatients: ()=>{
     if (!ownProps.data.loading && !ownProps.data.error){
       return _.filter(ownProps.data.patientsToTarget, (patient)=>{
@@ -61,6 +67,9 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   toggleMenu(menuState) {
     dispatch(valueSet('isMenuOpen', !menuState));
+  },
+  toggleParams(paramsState) {
+    dispatch(valueSet('isParamsOpen', !paramsState));
   }
 });
 

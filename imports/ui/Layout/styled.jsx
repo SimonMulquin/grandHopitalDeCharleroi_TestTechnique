@@ -53,6 +53,22 @@ const MainTitle = styled(Link)`
   background-size: contain;
 `;
 
+const ParamsButton = styled.button`
+  display: block;
+  position: absolute;
+  left: 140px;
+  top: 0;
+  height: 60px;
+  width: auto;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  border: 0;
+  padding: 6px;
+  margin: 0;
+  background: white;
+`;
+
 const Menu = styled.nav`
   display: flex;
   position: relative;
@@ -163,6 +179,20 @@ const Page = styled.div`
   padding: 60px 0 0 0;
 `;
 
+const Veil = styled.div`
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 60px;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.5);
+  padding: 5% 10%;
+  margin: 0;
+  text-align: center;
+`;
+
 
 
 export {
@@ -170,8 +200,10 @@ export {
   StyledHeader,
   MainTitle,
   Menu,
+  ParamsButton,
   Target,
   MenuButton,
   Icon,
   Page,
+  Veil
 };
