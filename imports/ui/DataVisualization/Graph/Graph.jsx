@@ -8,7 +8,7 @@ const { Container, Background, Title, XY, Unit, Level, Bars, Bar, ID, X } = comp
 
 const levels = [1,2,3,4,5,6,7,8,9,10];
 
-const Graph = ({toEval: {title, order, unit}, items, graphsToShow })=>{ if(_.some(graphsToShow, (name)=>(name === title))) { return (
+const Graph = ({toEval: {title, order, unit}, items, graphsToShow })=>{ if(_.some(graphsToShow, (graph)=>{if (graph.name === title) { return graph.toShow; }})) { return (
   <Container>
     <Background>
       <Title>{title}</Title>

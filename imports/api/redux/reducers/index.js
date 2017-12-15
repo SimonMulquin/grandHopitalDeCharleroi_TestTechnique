@@ -1,12 +1,20 @@
-//permet d'initialiser et définir des valeurs pour les propriétés du store redux
+//permet de définir et d'initialiser des valeurs pour les propriétés du store redux
 import { createValueReducer } from 'meteor/ssrwpo:ssr';
 //reducers ( propriétés du store redux contenant l'état de l'application et ses états précédents )
 import { reducer as formReducer } from 'redux-form';
 const isMenuOpen = createValueReducer('isMenuOpen', false);
 const isParamsOpen = createValueReducer('isParamsOpen', false);
-const paramsState = createValueReducer('paramsState', 'patients');
+const paramsState = createValueReducer('paramsState', 'data');
 const targetedPatientsIds = createValueReducer('targetedPatientsIds', [88, 58, 175, 222 ]);
-const graphsToShow = createValueReducer('graphsToShow', ['Age', 'BMI/IMC', 'HbA1c', 'Cholesterol total', 'Cholesterol HDL', 'PSS', 'Conso. tabagique']);
+const graphsToShow = createValueReducer('graphsToShow', [
+  {name: 'Age', toShow: true},
+  {name: 'BMI/IMC', toShow: true},
+  {name: 'HbA1c', toShow: true}, 
+  {name: 'Cholesterol total', toShow: true},
+  {name: 'Cholesterol HDL', toShow: true},
+  {name: 'PSS', toShow: true},
+  {name: 'Conso. tabagique', toShow: true}
+]);
 
 //reducers côté serveur (et client)
 export const serverReducers = {

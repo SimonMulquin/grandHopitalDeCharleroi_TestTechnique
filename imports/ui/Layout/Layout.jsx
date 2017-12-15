@@ -20,12 +20,12 @@ const Root = (props) => (
   <div id='base'>
     <Head />
       <Page>
-        <Header />
         {!props.isParamsOpen ? null :
           <Veil>
             <ParamsForm />
           </Veil>
         }
+        <Header />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route default render={()=>(<NotFound>Aucune donnée connue pour cette url.</NotFound>)} />

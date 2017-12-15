@@ -32,8 +32,6 @@ const StyledHeader = styled.header`
   background: white;
   box-shadow: 0 1px 2px 1px rgba(0,0,0,.8);
   z-index: 999;
-  overflow-x: hidden;
-  overflow-y: ${props => props.isMenuOpen ? 'scroll' : 'hidden'};
   @media all and (max-width: 1280px) {
     height: ${props => props.isMenuOpen ? '100vh' : '60px'};
   }
