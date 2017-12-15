@@ -191,6 +191,12 @@ const Veil = styled.div`
   padding: 5% 10%;
   margin: 0;
   text-align: center;
+  @media all and (max-width: 1280px) {
+    padding: 5%;
+  }
+  @media all and (max-width: 700px) {
+    padding: 0;
+  }
 `;
 
 

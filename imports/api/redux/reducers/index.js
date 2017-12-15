@@ -4,6 +4,7 @@ import { createValueReducer } from 'meteor/ssrwpo:ssr';
 import { reducer as formReducer } from 'redux-form';
 const isMenuOpen = createValueReducer('isMenuOpen', false);
 const isParamsOpen = createValueReducer('isParamsOpen', false);
+const paramsState = createValueReducer('paramsState', 'patients');
 const targetedPatientsIds = createValueReducer('targetedPatientsIds', [88, 58, 175, 222 ]);
 const graphsToShow = createValueReducer('graphsToShow', ['Age', 'BMI/IMC', 'HbA1c', 'Cholesterol total', 'Cholesterol HDL', 'PSS', 'Conso. tabagique']);
 
@@ -12,6 +13,7 @@ export const serverReducers = {
   form: formReducer,
   isMenuOpen,
   isParamsOpen,
+  paramsState,
   targetedPatientsIds,
   graphsToShow
 }
