@@ -4,6 +4,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag';
 //Permet l'accès à redux
 import { connect } from 'react-redux';
+//composants stylisés
+import { List } from './styled.js';
 
 
 const PatientsList = (props)=>(

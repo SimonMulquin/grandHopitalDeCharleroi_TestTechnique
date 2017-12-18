@@ -6,7 +6,7 @@ l'application une fois que la communication avec le serveur est assurée.
 import { getStore, asymetricSsr } from 'meteor/ssrwpo:ssr';
 //Librairies nécéssaires au fonctionnement de graphql
 import { ApolloProvider, graphql } from 'react-apollo';
-import client from './ApolloClient';
+import client from './ApolloClient.js';
 //Doit passer un composant "Root" au provider,
 import Root from '/imports/ui/Layout/Layout.jsx';
 //Librairie nécéssaire à rendre accessible le store redux

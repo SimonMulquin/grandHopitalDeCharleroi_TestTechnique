@@ -2,7 +2,6 @@ import { createRouter, logger } from 'meteor/ssrwpo:ssr';
 import { serverReducers as appReducers } from '/imports/api/redux/reducers';
 
 import MainApp from '/imports/MainApp.jsx';
-
 createRouter({
   // Your MainApp as the top component rendered and injected in the HTML payload
   MainApp,

@@ -24,7 +24,7 @@ isMenuOpen: booleen, true: le menu est ouvert, false: le menu est fermé
 toggleMenu: prend ce booleen en argument pour inverser sa valeur
 Même fonctionnement avec les paramètres
 */
-const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPatients, unTarget}) => (
+const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPatients, targetedPatientsIds, unTarget}) => (
   <StyledHeader isMenuOpen={isMenuOpen}>
     <Menu>
       <MainTitle to='/' />
@@ -32,7 +32,7 @@ const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPat
         {isParamsOpen ? 'retour' : 'paramètres'}
       </ParamsButton>
       {targetedPatients().map((patient, index)=>(
-        <Target number={index} key={index}>{patient.name}<Delete onClick={()=>(unTarget(targetedPatients(), index))}>x</Delete></Target>
+        <Target number={index} key={index}>{patient.name}<Delete onClick={()=>(unTarget(targetedPatientsIds, patient.id))}>x</Delete></Target>
       ))}
     </Menu>
     <MenuButton onClick={()=>(toggleMenu(isMenuOpen))}>
@@ -48,8 +48,10 @@ const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPat
 const mapStateToProps = (store, ownProps) => ({
 	isMenuOpen: store.isMenuOpen,
   isParamsOpen: store.isParamsOpen,
+  targetedPatientsIds: store.targetedPatientsIds,
   targetedPatients: ()=>{
     if (!ownProps.data.loading && !ownProps.data.error){
+      console.log(store.targetedPatientsIds);
       return _.filter(ownProps.data.patientsToTarget, (patient)=>{
         /*si un des id dans targetedPatientsIds correspond à l'id du patient*/
         if (_.some(store.targetedPatientsIds, (id)=>(id === patient.id))){
@@ -72,10 +74,15 @@ const mapDispatchToProps = dispatch => ({
   toggleParams(paramsState) {
     dispatch(valueSet('isParamsOpen', !paramsState));
   },
-  unTarget(patients, indexToDelete) {
-    dispatch(valueSet('targetedPatientsIds', patients.map((item, index)=>{
-      if (index != indexToDelete) {
-        return item.id;
+  unTarget(patients, idToDelete) {
+    dispatch(valueSet('targetedPatientsIds', _.filter(patients, (patient)=>{
+      /*si s id correspond à idToDelete*/
+      if (patient === idToDelete){
+        /*retire ce patient du tableau du store*/
+        return false;
+      } else {
+        //remet les autres.
+        return patient;
       }
     })));
   }

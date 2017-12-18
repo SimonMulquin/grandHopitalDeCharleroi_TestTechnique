@@ -1,14 +1,7 @@
 import { createRouter, logger } from 'meteor/ssrwpo:ssr';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise';
 import appReducers from '/imports/api/redux/reducers';
 
 import MainApp from '/imports/MainApp.jsx';
-
-// const appMiddlewares = [
-//   thunk,
-//   promise
-// ];
 
 createRouter({
   // Your MainApp as the top component that will get rendered in <div id='react' />
