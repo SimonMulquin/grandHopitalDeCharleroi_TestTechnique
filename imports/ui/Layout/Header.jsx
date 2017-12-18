@@ -14,7 +14,8 @@ import {
   ParamsButton,
   Target,
   MenuButton,
-  Icon
+  Icon,
+  Delete
 } from './styled.jsx';
 
 /*
@@ -23,7 +24,7 @@ isMenuOpen: booleen, true: le menu est ouvert, false: le menu est fermé
 toggleMenu: prend ce booleen en argument pour inverser sa valeur
 Même fonctionnement avec les paramètres
 */
-const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPatients}) => (
+const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPatients, unTarget}) => (
   <StyledHeader isMenuOpen={isMenuOpen}>
     <Menu>
       <MainTitle to='/' />
@@ -31,7 +32,7 @@ const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPat
         {isParamsOpen ? 'retour' : 'paramètres'}
       </ParamsButton>
       {targetedPatients().map((patient, index)=>(
-        <Target to='/' number={index} key={index}>{patient.name}</Target>
+        <Target number={index} key={index}>{patient.name}<Delete onClick={()=>(unTarget(targetedPatients(), index))}>x</Delete></Target>
       ))}
     </Menu>
     <MenuButton onClick={()=>(toggleMenu(isMenuOpen))}>
@@ -59,17 +60,24 @@ const mapStateToProps = (store, ownProps) => ({
     } else {
       return [];
     }
-  },
-  patientsList: (ownProps.data.loading || ownProps.data.error) ? [] : ownProps.data.patientsToTarget
+  }
 
 });
 //toggleMenu dispatche une action qui va changer la valeur de isMenuOpen dans le store redux en l'inverse de menuState, passé en argument.
+//toggle params même fonctionnement, unTarget remplace le tableau targetedPatientsIds par un nouveau sans le patient retiré.
 const mapDispatchToProps = dispatch => ({
   toggleMenu(menuState) {
     dispatch(valueSet('isMenuOpen', !menuState));
   },
   toggleParams(paramsState) {
     dispatch(valueSet('isParamsOpen', !paramsState));
+  },
+  unTarget(patients, indexToDelete) {
+    dispatch(valueSet('targetedPatientsIds', patients.map((item, index)=>{
+      if (index != indexToDelete) {
+        return item.id;
+      }
+    })));
   }
 });
 

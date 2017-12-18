@@ -12,7 +12,7 @@ import PatientDataTable from '/imports/ui/DataVisualization/PatientDataTable/Pat
 // composant montant les graphiques à barettes.
 import Graph from '/imports/ui/DataVisualization/Graph/Graph.jsx';
 //Nécéssaire pour calculler l'age
-import moment from 'moment';
+import age from '/imports/ui/DataVisualization/utils/age.js';
 //calcul du BMI/IMC
 import imc from '/imports/ui/DataVisualization/utils/imc.js';
 
@@ -29,7 +29,7 @@ const Home = (props) => (
           ))}
           <Graph toEval={{
             title: 'Age', order: '10', unit: ' Années'
-          }} items={props.data.patientsDatas.map((patient, index)=>({value: moment(patient.admin.date_de_naissance, "YYYYMMDD").fromNow().split(" ")[0], id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
+          }} items={props.data.patientsDatas.map((patient, index)=>({value: age(patient.admin.date_de_naissance), id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>
           <Graph toEval={{
             title: 'BMI/IMC', order: '5', unit: ' '
           }} items={props.data.patientsDatas.map((patient, index)=>({value: imc(patient.biometrie.poids, patient.biometrie.taille), id: patient.id, name: `${patient.admin.prenom} ${patient.admin.nom}`}))}/>

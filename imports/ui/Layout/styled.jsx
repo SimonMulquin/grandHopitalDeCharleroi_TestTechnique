@@ -32,6 +32,7 @@ const StyledHeader = styled.header`
   background: white;
   box-shadow: 0 1px 2px 1px rgba(0,0,0,.8);
   z-index: 999;
+  overflow: hidden;
   @media all and (max-width: 1280px) {
     height: ${props => props.isMenuOpen ? '100vh' : '60px'};
   }
@@ -85,7 +86,7 @@ const Menu = styled.nav`
   }
 `;
 
-const Target = styled(Link)`
+const Target = styled.span`
   display: inline-block;
   position: relative;
   width: auto;
@@ -93,7 +94,6 @@ const Target = styled(Link)`
   line-height: 60px;
   padding: 0 18px;
   margin: 0 30px;
-  text-decoration: none;
   color: ${props => {switch(props.number){
     case 0:
       return '#2867a7';break;
@@ -165,6 +165,19 @@ const Icon = styled.div`
     transition: .3s;
   }
 `;
+const Delete = styled.button`
+  position: relative;
+  display: inline-block;
+  background-color: red;
+  color: white;
+  border-radius: 100%;
+  outline: none;
+  border: 0;
+  line-height: 20px;
+  width: 20px;
+  text-align: center;
+  margin-left: 12px;
+`;
 
 //Page
 
@@ -208,6 +221,7 @@ export {
   Target,
   MenuButton,
   Icon,
+  Delete,
   Page,
   Veil
 };

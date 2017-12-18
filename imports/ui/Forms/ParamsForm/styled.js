@@ -41,7 +41,7 @@ const Toggle = styled.button`
   height: auto;
   line-height: 40px;
   font-weight: bold;
-  background-color: ${props=> props.active ? '#2867a7' : '#ff70ab'};
+  background-color: ${props=> props.active ? '#2867a7' : 'rgba(0,0,0,.4)'};
   outline: none;
   border: 0;
   text-decoration: ${props=> props.active ? 'underline' : 'none'};
@@ -53,10 +53,10 @@ const Form = styled.div`
   height: 500px;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
   @media all and (max-width: 700px) {
     height: calc(100vh - 100px);
-    overflow-x: hidden;
-    overflow-y: scroll;
   }
 `;
 const GraphsList = styled.div`

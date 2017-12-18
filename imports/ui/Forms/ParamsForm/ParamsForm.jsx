@@ -18,7 +18,9 @@ const ParamsForm = ({ paramsState, graphsToShow, toPatients, toData })=>(
       <Toggle onClick={()=>(toData())} active={paramsState === 'data'}>Données</Toggle>
     </Heading>
     { paramsState === 'data' ?
-      <GraphsToShow graphsToShow={graphsToShow} />
+      <Form>
+        <GraphsToShow graphsToShow={graphsToShow} />
+      </Form>
     :
       <Form>
         <PatientsSearchForm />
