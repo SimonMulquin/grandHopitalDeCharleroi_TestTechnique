@@ -10,7 +10,7 @@ const Container = styled.div`
   overflow: hidden;
   padding: 0;
   margin: 0 auto;
-  background-color: grey;
+  background-color: #c7c7c7;
   border: solid white 2px;
   border-radius: 12px;
   @media all and (max-width: 1280px) {
@@ -59,11 +59,20 @@ const Form = styled.div`
     overflow-y: scroll;
   }
 `;
+const GraphsList = styled.div`
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 10px 7%;
+  margin: 0;
+`;
 const GraphButton = styled.button`
   display: inline-block;
   position: relative;
-  background-color: ${props => props.active ? '#2867a7' : 'rgba(0,0,0,.4)'};
+  background-color: ${props => props.active ? '#6995c2' : 'rgba(0,0,0,.4)'};
   outline: none;
+  margin: 8px;
 `;
 
 export {
@@ -71,5 +80,6 @@ export {
   Heading,
   Toggle,
   Form,
+  GraphsList,
   GraphButton
 };
