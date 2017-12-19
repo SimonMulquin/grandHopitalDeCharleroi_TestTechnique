@@ -58,6 +58,7 @@ const mapStateToProps = (store, ownProps) => {
       }
       const filteredPatients = _.filter(ownProps.data.patientsToTarget, (patient)=>{
         if (
+          ((patientsSearchParams.sex === 'both') || (patientsSearchParams.sex === patient.sex)) &&
           (parseInt(patientsSearchParams.minAge) <= patient.age || !patientsSearchParams.minAge) && ((patient.age <= parseInt(patientsSearchParams.maxAge) || !patientsSearchParams.maxAge)) &&
           (parseInt(patientsSearchParams.minImc) <= patient.imc || !patientsSearchParams.minImc) && ((patient.imc <= parseInt(patientsSearchParams.maxImc) || !patientsSearchParams.maxImc)) &&
           (parseInt(patientsSearchParams.minTotalCholesterol) <= patient.totalCholesterol || !patientsSearchParams.minTotalCholesterol) && ((patient.totalCholesterol <= parseInt(patientsSearchParams.maxTotalCholesterol) || !patientsSearchParams.maxTotalCholesterol)) &&
