@@ -15,8 +15,6 @@ const Container = styled.div`
   border-radius: 12px;
   @media all and (max-width: 1280px) {
     width: 500px;
-    overflow-y: scroll;
-    overflow-x: hidden;
   }
   @media all and (max-width: 700px) {
     width: 100%;
@@ -93,16 +91,41 @@ const AddPatient = styled.button`
   margin: 6px;
 `;
 const SearchParamsForm = styled.form`
-
+  display: block;
+  position: relative;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  height: auto;
 `;
 const SearchParamsContainer = styled.div`
+  dispaly: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
   border-bottom: solid black 1px;
+  text-align: left;
 `;
 const SubmitButton = styled.button`
-
+  display: inline-block;
+  position: relative;
+  width: auto;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 6px;
+  margin: 6px;
 `;
 const ResetButton = styled.button`
-
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  background: #0e0e0e url(/reset.png) no-repeat center;
+  background-size: cover;
+  padding: 8px;
+  margin: 6px;
 `;
 
 export {

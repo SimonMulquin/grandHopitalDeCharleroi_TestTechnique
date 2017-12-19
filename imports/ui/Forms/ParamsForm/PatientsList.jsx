@@ -10,8 +10,9 @@ import { valueSet } from 'meteor/ssrwpo:ssr';
 import { PatientsToAdd, AddPatient } from './styled.js';
 
 
-const PatientsList = ({data, isInStore, addToTargets, targetedPatientsIds})=>(
+const PatientsList = ({data, isInStore, addToTargets, targetedPatientsIds, patientsSearchParams})=>(
   <PatientsToAdd>
+    {console.log(patientsSearchParams)}
     {(data.loading || data.error) ? <span>Chargement ...</span> : data.patientsToTarget.map((patient, index)=>(
       <AddPatient  active={isInStore(patient.id)} onClick={()=>(addToTargets(targetedPatientsIds, patient.id))} key={index}>{patient.name}</AddPatient>
     ))}
@@ -34,7 +35,7 @@ ownProps contient les props recues du connect et variables contient les paramèt
 const PatientsListWithData = graphql(queryPatientsToTarget, {
   options: (ownProps) => { return {
     variables: {
-      searchParams: ownProps.searchParams
+      searchParams: ownProps.patientsSearchParams
     }
   }
 }})(PatientsList)
@@ -47,7 +48,8 @@ const mapStateToProps = store => ({
     } else {
       return false;
     }
-  }
+  },
+  patientsSearchParams: store.patientsSearchParams
 });
 
 const mapDispatchToProps = dispatch => ({

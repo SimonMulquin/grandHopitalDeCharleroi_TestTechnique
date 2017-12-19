@@ -15,6 +15,18 @@ const graphsToShow = createValueReducer('graphsToShow', [
   {name: 'PSS', toShow: true},
   {name: 'Conso. tabagique', toShow: true}
 ]);
+const patientsSearchParams = createValueReducer('patientsSearchParams', {
+  id: null,
+  sex: 'both',
+  minAge: null,
+  maxAge: null,
+  imc: null,
+  HbA1c: null,
+  totalCholesterol: null,
+  HDLCholesterol: null,
+  PSS: null,
+  tabac: null
+});
 
 //reducers côté serveur (et client)
 export const serverReducers = {
@@ -23,7 +35,8 @@ export const serverReducers = {
   isParamsOpen,
   paramsState,
   targetedPatientsIds,
-  graphsToShow
+  graphsToShow,
+  patientsSearchParams
 }
 
 //reducers côté client
