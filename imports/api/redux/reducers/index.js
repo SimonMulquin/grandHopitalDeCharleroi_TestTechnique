@@ -4,12 +4,12 @@ import { createValueReducer } from 'meteor/ssrwpo:ssr';
 import { reducer as formReducer } from 'redux-form';
 const isMenuOpen = createValueReducer('isMenuOpen', false);
 const isParamsOpen = createValueReducer('isParamsOpen', false);
-const paramsState = createValueReducer('paramsState', 'data');
-const targetedPatientsIds = createValueReducer('targetedPatientsIds', [88, 58, 175, 222 ]);
+const paramsState = createValueReducer('paramsState', 'patients');
+const targetedPatientsIds = createValueReducer('targetedPatientsIds', [3, 58, 175, 222 ]);
 const graphsToShow = createValueReducer('graphsToShow', [
   {name: 'Age', toShow: true},
   {name: 'BMI/IMC', toShow: true},
-  {name: 'HbA1c', toShow: true}, 
+  {name: 'HbA1c', toShow: true},
   {name: 'Cholesterol total', toShow: true},
   {name: 'Cholesterol HDL', toShow: true},
   {name: 'PSS', toShow: true},

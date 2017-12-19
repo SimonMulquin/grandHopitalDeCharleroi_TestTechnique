@@ -75,11 +75,47 @@ const GraphButton = styled.button`
   margin: 8px;
 `;
 
+const PatientsToAdd = styled.div`
+  display: block;
+  position: relative;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  height: auto;
+`;
+
+const AddPatient = styled.button`
+  display: ${props => props.active ? 'none' : 'inline-block'};
+  position: relative;
+  width: auto;
+  height: auto;
+  padding: 6px;
+  margin: 6px;
+`;
+const SearchParamsForm = styled.form`
+
+`;
+const SearchParamsContainer = styled.div`
+  border-bottom: solid black 1px;
+`;
+const SubmitButton = styled.button`
+
+`;
+const ResetButton = styled.button`
+
+`;
+
 export {
   Container,
   Heading,
   Toggle,
   Form,
   GraphsList,
-  GraphButton
+  GraphButton,
+  PatientsToAdd,
+  AddPatient,
+  SearchParamsForm,
+  SearchParamsContainer,
+  SubmitButton,
+  ResetButton
 };

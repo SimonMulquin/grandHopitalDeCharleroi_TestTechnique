@@ -51,7 +51,6 @@ const mapStateToProps = (store, ownProps) => ({
   targetedPatientsIds: store.targetedPatientsIds,
   targetedPatients: ()=>{
     if (!ownProps.data.loading && !ownProps.data.error){
-      console.log(store.targetedPatientsIds);
       return _.filter(ownProps.data.patientsToTarget, (patient)=>{
         /*si un des id dans targetedPatientsIds correspond à l'id du patient*/
         if (_.some(store.targetedPatientsIds, (id)=>(id === patient.id))){

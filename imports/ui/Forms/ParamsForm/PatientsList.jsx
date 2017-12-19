@@ -4,16 +4,18 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag';
 //Permet l'accès à redux
 import { connect } from 'react-redux';
+//valueSet permet d'intéragir avec le store redux
+import { valueSet } from 'meteor/ssrwpo:ssr';
 //composants stylisés
-import { List } from './styled.js';
+import { PatientsToAdd, AddPatient } from './styled.js';
 
 
-const PatientsList = (props)=>(
-  <div>
-    {(props.data.loading || props.data.error) ? <span>Chargement ...</span> : props.data.patientsToTarget.map((patient, index)=>(
-      <span key={index}>{patient.name} {patient.id}</span>
+const PatientsList = ({data, isInStore, addToTargets, targetedPatientsIds})=>(
+  <PatientsToAdd>
+    {(data.loading || data.error) ? <span>Chargement ...</span> : data.patientsToTarget.map((patient, index)=>(
+      <AddPatient  active={isInStore(patient.id)} onClick={()=>(addToTargets(targetedPatientsIds, patient.id))} key={index}>{patient.name}</AddPatient>
     ))}
-  </div>
+  </PatientsToAdd>
 );
 
 //Requête graphql => Séléctionne les données à envoyer dans data, prend un argument devant être un array contenant strictement des valeurs de type int.
@@ -38,11 +40,24 @@ const PatientsListWithData = graphql(queryPatientsToTarget, {
 }})(PatientsList)
 
 const mapStateToProps = store => ({
-
+  targetedPatientsIds: store.targetedPatientsIds,
+  isInStore: (argId)=>{
+    if (_.some(store.targetedPatientsIds, (id)=>(id === argId))){
+      return true;
+    } else {
+      return false;
+    }
+  }
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  addToTargets(targetedPatientsIds, patientId) {
+    if (targetedPatientsIds.length >= 4) {
+      alert('Vous ne pouvez pas sélectionner plus de 4 patients simultanément.');
+      return false
+    }
+    dispatch(valueSet('targetedPatientsIds', [...targetedPatientsIds, patientId]));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientsListWithData);
