@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 const isMenuOpen = createValueReducer('isMenuOpen', false);
 const isParamsOpen = createValueReducer('isParamsOpen', false);
 const paramsState = createValueReducer('paramsState', 'patients');
-const targetedPatientsIds = createValueReducer('targetedPatientsIds', [3, 58, 175, 222 ]);
+const targetedPatientsIds = createValueReducer('targetedPatientsIds', []);
 const graphsToShow = createValueReducer('graphsToShow', [
   {name: 'Age', toShow: true},
   {name: 'BMI/IMC', toShow: true},
@@ -20,12 +20,18 @@ const patientsSearchParams = createValueReducer('patientsSearchParams', {
   sex: 'both',
   minAge: null,
   maxAge: null,
-  imc: null,
-  HbA1c: null,
-  totalCholesterol: null,
-  HDLCholesterol: null,
-  PSS: null,
-  tabac: null
+  minImc: null,
+  maxImc: null,
+  minHbA1c: null,
+  maxHbA1c: null,
+  minTotalCholesterol: null,
+  maxTotalCholesterol: null,
+  minHDLCholesterol: null,
+  maxHDLCHolesterol: null,
+  minPSS: null,
+  maxPSS: null,
+  minTabac: null,
+  maxTabac: null
 });
 
 //reducers côté serveur (et client)

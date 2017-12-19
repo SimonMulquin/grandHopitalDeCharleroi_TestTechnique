@@ -24,7 +24,7 @@ const resolvers = {
         {
           name: `${patient.admin.prenom} ${patient.admin.nom}`,
           id: patient.id,
-          age: age(patient.admin.date_de_naissance),
+          age: parseInt(age(patient.admin.date_de_naissance)),
           sex: patient.admin.Genre,
           imc: imc(patient.biometrie.poids, patient.biometrie.taille),
           HbA1c: patient.const_biologique.HbA1c,

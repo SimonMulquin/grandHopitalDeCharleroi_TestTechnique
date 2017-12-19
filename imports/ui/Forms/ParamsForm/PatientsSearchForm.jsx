@@ -17,12 +17,16 @@ const PatientsSearchForm = ({handleSubmit, reset, submit}) => (
         <Field name="sex" component={SelectSexInput} />
         <Field name="minAge" placeholder='age minimum' component={TextInput} />
         <Field name="maxAge" placeholder='age maximum' component={TextInput} />
-        <Field name="imc" placeholder='BMI/IMC' component={TextInput} />
-        <Field name="HbA1c" placeholder='HbA1c' component={TextInput} />
-        <Field name="totalCholesterol" placeholder='cholesterol total' component={TextInput} />
-        <Field name="HDLCholesterol" placeholder='Cholesterol HDL' component={TextInput} />
-        <Field name="PSS" placeholder='PSS' component={TextInput} />
-        <Field name="tabac" placeholder='conso. tabagique' component={TextInput} />
+        <Field name="minImc" placeholder='BMI/IMC minimum' component={TextInput} />
+        <Field name="maxImc" placeholder='BMI/IMC maximum' component={TextInput} />
+        <Field name="minTotalCholesterol" placeholder='cholesterol total min.' component={TextInput} />
+        <Field name="maxTotalCholesterol" placeholder='cholesterol total max.' component={TextInput} />
+        <Field name="minHDLCholesterol" placeholder='Cholesterol HDL minimum' component={TextInput} />
+        <Field name="maxHDLCholesterol" placeholder='Cholesterol HDL maximum' component={TextInput} />
+        <Field name="minPSS" placeholder='PSS minimum' component={TextInput} />
+        <Field name="maxPSS" placeholder='PSS maximum' component={TextInput} />
+        <Field name="minTabac" placeholder='conso. tabagique min.' component={TextInput} />
+        <Field name="maxTabac" placeholder='conso. tabagique max.' component={TextInput} />
         <div>
           <Field name="id" placeholder='id' component={TextInput} />
           <SubmitButton onClick={handleSubmit((res) => {submit(res)})}>Rechercher</SubmitButton>
@@ -47,17 +51,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default reduxForm({
   form: 'SearchParamsForm',
-  destroyOnUnmount: false,
-  initialValues: {
-    id: null,
-    sex: 'both',
-    minAge: null,
-    maxAge: null,
-    imc: null,
-    HbA1c: null,
-    totalCholesterol: null,
-    HDLCholesterol: null,
-    PSS: null,
-    tabac: null
-  }
+  destroyOnUnmount: false
 })(connect(mapStateToProps, mapDispatchToProps)(PatientsSearchForm));

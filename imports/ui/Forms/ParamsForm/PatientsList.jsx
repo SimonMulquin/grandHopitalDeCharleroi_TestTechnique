@@ -12,6 +12,7 @@ import { PatientsToAdd, AddPatient } from './styled.js';
 
 const PatientsList = ({data, isInStore, patientsToTarget, addToTargets, targetedPatientsIds})=>(
   <PatientsToAdd>
+    <div>{patientsToTarget().length} trouvés</div>
     {(data.loading || data.error) ? <span>Chargement ...</span> : patientsToTarget().map((patient, index)=>(
       <AddPatient  active={isInStore(patient.id)} onClick={()=>(addToTargets(targetedPatientsIds, patient.id))} key={index}>{patient.name}</AddPatient>
     ))}
@@ -24,31 +25,52 @@ const queryPatientsToTarget = gql`
     patientsToTarget {
       id
       name
+      age
+      sex
+      imc
+      totalCholesterol
+      HDLCholesterol
+      PSS
+      tabac
     }
   }
 `;
 
 //cible les patients à afficher ou non selon les paramètres
-const mapStateToProps = (store, ownProps) => ({
-  targetedPatientsIds: store.targetedPatientsIds,
-  isInStore: (argId)=>{
-    if (_.some(store.targetedPatientsIds, (id)=>(id === argId))){
-      return true;
-    } else {
-      return false;
+const mapStateToProps = (store, ownProps) => {
+  const { targetedPatientsIds, patientsSearchParams} = store
+  return {
+    targetedPatientsIds: targetedPatientsIds,
+    isInStore: (argId)=>{
+      if (_.some(targetedPatientsIds, (id)=>(id === argId))){
+        return true;
+      } else {
+        return false;
+      }
+    },
+    patientsSearchParams: patientsSearchParams,
+    patientsToTarget: ()=>{
+      if (ownProps.data.loading || ownProps.data.loading) {
+        return [];
+      }
+      if (patientsSearchParams.id != null) {
+        return [_.findWhere(ownProps.data.patientsToTarget, {id: parseInt(patientsSearchParams.id)})];
+      }
+      const filteredPatients = _.filter(ownProps.data.patientsToTarget, (patient)=>{
+        if (
+          (parseInt(patientsSearchParams.minAge) <= patient.age || !patientsSearchParams.minAge) && ((patient.age <= parseInt(patientsSearchParams.maxAge) || !patientsSearchParams.maxAge)) &&
+          (parseInt(patientsSearchParams.minImc) <= patient.imc || !patientsSearchParams.minImc) && ((patient.imc <= parseInt(patientsSearchParams.maxImc) || !patientsSearchParams.maxImc)) &&
+          (parseInt(patientsSearchParams.minTotalCholesterol) <= patient.totalCholesterol || !patientsSearchParams.minTotalCholesterol) && ((patient.totalCholesterol <= parseInt(patientsSearchParams.maxTotalCholesterol) || !patientsSearchParams.maxTotalCholesterol)) &&
+          (parseInt(patientsSearchParams.minHDLCholesterol) <= patient.HDLCholesterol || !patientsSearchParams.minHDLCholesterol) && ((patient.HDLCholesterol <= parseInt(patientsSearchParams.maxHDLCholesterol) || !patientsSearchParams.maxHDLCholesterol)) &&
+          (parseInt(patientsSearchParams.minPSS) <= patient.PSS || !patientsSearchParams.minPSS) && ((patient.PSS <= parseInt(patientsSearchParams.maxPSS) || !patientsSearchParams.maxPSS)) &&
+          (parseInt(patientsSearchParams.minTabac) <= patient.tabac || !patientsSearchParams.minTabac) && ((patient.tabac <= parseInt(patientsSearchParams.maxTabac) || !patientsSearchParams.maxTabac))
+        ) {return true}
+      });
+      if ( filteredPatients.length < 1 ) {return ownProps.data.patientsToTarget} else {return filteredPatients;};
+      return ownProps.data.patientsToTarget;
     }
-  },
-  patientsSearchParams: store.patientsSearchParams,
-  patientsToTarget: ()=>{
-    if (ownProps.data.loading || ownProps.data.loading) {
-      return [];
-    }
-    if (store.patientsSearchParams.id != null) {
-      return [_.findWhere(ownProps.data.patientsToTarget, {id: parseInt(store.patientsSearchParams.id)})];
-    }
-    return ownProps.data.patientsToTarget;
   }
-});
+};
 
 const mapDispatchToProps = dispatch => ({
   addToTargets(targetedPatientsIds, patientId) {
