@@ -14,7 +14,7 @@ import SelectSexInput from './SelectSexInput.jsx';
 const PatientsSearchForm = ({handleSubmit, reset, submit}) => (
   <SearchParamsContainer>
       <SearchParamsForm onClick={(e) => e.stopPropagation()} method="post">
-        <Field name="sex" placeholder='genre' component={SelectSexInput} />
+        <Field name="sex" component={SelectSexInput} />
         <Field name="minAge" placeholder='age minimum' component={TextInput} />
         <Field name="maxAge" placeholder='age maximum' component={TextInput} />
         <Field name="imc" placeholder='BMI/IMC' component={TextInput} />

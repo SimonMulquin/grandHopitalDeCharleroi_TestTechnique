@@ -10,10 +10,9 @@ import { valueSet } from 'meteor/ssrwpo:ssr';
 import { PatientsToAdd, AddPatient } from './styled.js';
 
 
-const PatientsList = ({data, isInStore, addToTargets, targetedPatientsIds, patientsSearchParams})=>(
+const PatientsList = ({data, isInStore, patientsToTarget, addToTargets, targetedPatientsIds})=>(
   <PatientsToAdd>
-    {console.log(patientsSearchParams)}
-    {(data.loading || data.error) ? <span>Chargement ...</span> : data.patientsToTarget.map((patient, index)=>(
+    {(data.loading || data.error) ? <span>Chargement ...</span> : patientsToTarget().map((patient, index)=>(
       <AddPatient  active={isInStore(patient.id)} onClick={()=>(addToTargets(targetedPatientsIds, patient.id))} key={index}>{patient.name}</AddPatient>
     ))}
   </PatientsToAdd>
@@ -29,18 +28,8 @@ const queryPatientsToTarget = gql`
   }
 `;
 
-/*Construit le composant PatientsLst en lui envoyant data en props.
-Data contient des propriétés error et loading afin de gérer le  cas d'une réponse non conforme ou trop lente.
-ownProps contient les props recues du connect et variables contient les paramètres de la requête*/
-const PatientsListWithData = graphql(queryPatientsToTarget, {
-  options: (ownProps) => { return {
-    variables: {
-      searchParams: ownProps.patientsSearchParams
-    }
-  }
-}})(PatientsList)
-
-const mapStateToProps = store => ({
+//cible les patients à afficher ou non selon les paramètres
+const mapStateToProps = (store, ownProps) => ({
   targetedPatientsIds: store.targetedPatientsIds,
   isInStore: (argId)=>{
     if (_.some(store.targetedPatientsIds, (id)=>(id === argId))){
@@ -49,7 +38,16 @@ const mapStateToProps = store => ({
       return false;
     }
   },
-  patientsSearchParams: store.patientsSearchParams
+  patientsSearchParams: store.patientsSearchParams,
+  patientsToTarget: ()=>{
+    if (ownProps.data.loading || ownProps.data.loading) {
+      return [];
+    }
+    if (store.patientsSearchParams.id != null) {
+      return [_.findWhere(ownProps.data.patientsToTarget, {id: parseInt(store.patientsSearchParams.id)})];
+    }
+    return ownProps.data.patientsToTarget;
+  }
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -62,4 +60,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientsListWithData);
+/*Construit le composant PatientsLst en lui envoyant data en props.
+Data contient des propriétés error et loading afin de gérer le  cas d'une réponse non conforme ou trop lente.
+ownProps contient les props recues du connect et variables contient les paramètres de la requête*/
+const PatientsListWithData = graphql(queryPatientsToTarget)(connect(mapStateToProps, mapDispatchToProps)(PatientsList));
+
+export default PatientsListWithData;

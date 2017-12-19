@@ -30,6 +30,9 @@ const Root = (props) => (
           <Route exact path='/' component={Home} />
           <Route default render={()=>(<NotFound>Aucune donnée connue pour cette url.</NotFound>)} />
         </Switch>
+        <footer>
+          Application démo développée par Simon Mulquin
+        </footer>
       </Page>
   </div>
 );

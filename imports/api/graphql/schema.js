@@ -33,6 +33,14 @@ export const typeDefs = `
   type PatientIdentity {
     name: String
     id: Int
+    age: Int
+    sex: String
+    imc: Float
+    HbA1C: Float
+    totalCholesterol: Int
+    HDLCholesterol: Int
+    PSS: Int
+    tabac: Int
   }
   type Query {
     patientsDatas(targetedPatientsIds: [Int]): [PatientDatas]
