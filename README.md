@@ -20,6 +20,7 @@ Une fois la boite de paramètrage ouverte, les première options à définir son
 Pour sélectionner **un à quatre patients**, cliquez sur l'onglet **Patients** en haut à gauche de la boite de paramètrage. Sa couleur bleue indique que vous êtes en train de définir les paramètres des patients.
 
 Cette partie de la boite de paramètrage se distincte par deux blocs:
+
 * le formulaire
 * la liste des patients
 
@@ -37,6 +38,7 @@ Pour afficher la liste des patients correspondants à votre recherche, cliquez s
 Pour **remettre les paramètres de recherche à zero**, cliquez sur le bouton noir à flèches blanches. Si vous désirez afficher la liste de tous les patients connus de l'application, cliquez ensuite sur le bouton **Rechercher**.
 
 ####La liste des patients####
+
 **La liste des patients** affiche les patients acceptés par les paramètres du formulaire. Si aucun paramètre n'est définis, alors la liste comprends tous les patients connus de l'application.
 
 Elle affiche également le **nombre de patients** répondant aux paramètres de restriction, ce qui vous permet, de visionner la part que prennent ces patients dans la population totale des patients connus de l'application.
@@ -44,6 +46,7 @@ Elle affiche également le **nombre de patients** répondant aux paramètres de 
 Pour **sélectionner un patient**, cliquez sur le bouton portant son nom dans la liste des patients. Les données du patients s'afficheront automatiquement dans l'application.
 
 ####Les patients sélectionnés####
+
 **Sur ordinateur**, les **patients sélectionnés** s'affichent en haut de la page, vous pouvez cliquer sur les boutons rouges à leur droite pour les désélectionner. Les patients sélectionnés n'apparaissent pas dans la liste des patients.
 
 **Sur tablette ou smartphone**, cliquez sur le bouton représentant **trois lignes roses** (en haut à droite) pour avoir un **apercu des patients sélectionnés**, le processus de suppression est le même que sur odinateur. Le bouton affiche une **croix**, cliquez dessus si vous ne désirez **plus voir** les patients sélectionnés.
@@ -63,6 +66,7 @@ Cette partie contient la liste des différents graphiques disponibles. Si le bou
 La page principale de l'application affiche des **tableaux** contenant les données des **patients sélectionnés**. Chaque patient a sa **couleur** et un id unique. Ils sont utilisés pour identifier les patients au sein des graphiques.
 
 Les grahiques se lisent comme suit: 
+
 *le **titre** stipule la donnée représentée.
 
 *l'**axe vertical** indique **le niveau et l'unité de la valeur**, si une barrette de couleur atteint ce niveau, cela signifie que le patient identifié par cette couleur ou l'id au pied de la barrette atteint cette valeur pour la donnée ciblée par le graphique.
