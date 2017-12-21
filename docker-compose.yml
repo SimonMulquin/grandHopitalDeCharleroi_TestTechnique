@@ -1,0 +1,28 @@
+version: "3"
+services:
+
+  mongo:
+    build: mongo
+    restart: always
+    networks:
+      - overlay
+    volumes:
+      - db-data:/db
+  ghdc:
+    build: ghdc
+    environment:
+      MONGO_URL: "mongodb://mongo:27017"
+      MONGO_OPLOG_URL: "mongodb://mongo:27017/local"
+      PORT: 3000
+      ROOT_URL: "http://localhost:3000"
+    ports:
+      - 3000:3000
+    networks:
+      - overlay
+    restart: always
+
+volumes:
+  db-data:
+
+networks:
+  overlay:

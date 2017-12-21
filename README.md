@@ -4,6 +4,26 @@
 
 Dans le cadre de ma candidature comme développeur front-end au **Grand Hopital 		de Charleroi** (GHdC), il m' été demandé de réaliser cette application en tant 	que **test technique** destiné à vérifier mes compétences.
 
+La demo de l'application est consultable ici: https://ghdc.simonmulquin.ovh
+
+## instructions d'installation:
+
+Premièrement, veillez à avoir la dernière version de Docker (disponible ici : https://www.docker.com/community-edition#/download)
+Placez-vous à la racine du projet, ensuite lancez ces commandes, dans l'ordre.
+Attention, la dernière commande est particulièrement longue (+5 minutes).
+
+docker-compose up -d mongo
+docker-compose run --rm mongo mongo mongo:27017/admin --quiet --eval "rs.initiate(); rs.conf();"
+docker-compose up -d ghdc
+
+Vous pouvez ensuite tester l'application en ouvrant votre navigateur sur localhost:3000
+
+Pour déployer l'application sur un serveur, changez le ROOT_URL dans le fichier docker-compose.yml pour l'ip ou le domaine pointant vers votre serveur.
+
+Faites de même si votre installation locale doit permettre à d'autres machines d'ouvrir l'application en pointant vers l'ip de votre machine locale.
+
+L'installation a été testée avec succès sur une machine linux. Il est conseillé de faire de même.
+
 ## manuel d'utilisation:
 
 ### paramètrer
