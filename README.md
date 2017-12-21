@@ -10,12 +10,12 @@ Dans le cadre de ma candidature comme développeur front-end au **Grand Hopital 
 
 A l'ouverture initiale de l'application **dans le navigateur** l'écran affiche des graphes vides et un bouton intitulé "**paramètres**". Cliquez sur ce bouton pour accéder aux paramètres de l'application.
 
-Vous pouvez fermer la boite de paramètrage à tout moment en cliquant sur **retour**, qui prend la place de **paramètres** lorsque la boite est ouverte.
+Vous pouvez fermer la boite de paramètrage à tout moment en cliquant au dehors de la boite ou sur **retour**, qui prend la place de **paramètres** lorsque la boite est ouverte. Les modifications que vous faîtes resteront enregistrée, à moins que vous n'actualisiez la page.
 
 
 ### définir les patients
 
-Une fois la boite de paramètrage ouverte, les première options à définir sont les patients dont on veut afficher les données. 
+Une fois la boite de paramètrage ouverte, les première options à définir sont les patients dont on veut afficher les données.
 
 Pour sélectionner **un à quatre patients**, cliquez sur l'onglet **Patients** en haut à gauche de la boite de paramètrage. Sa couleur bleue indique que vous êtes en train de définir les paramètres des patients.
 
@@ -23,6 +23,7 @@ Cette partie de la boite de paramètrage se distincte par deux blocs:
 
 * le formulaire
 * la liste des patients
+
 
 ####Le formulaire:
 **Le formulaire** permet de restreindre la liste des patients et possède deux fonctions:
@@ -37,6 +38,7 @@ Pour afficher la liste des patients correspondants à votre recherche, cliquez s
 
 Pour **remettre les paramètres de recherche à zero**, cliquez sur le bouton noir à flèches blanches. Si vous désirez afficher la liste de tous les patients connus de l'application, cliquez ensuite sur le bouton **Rechercher**.
 
+
 ####La liste des patients
 
 **La liste des patients** affiche les patients acceptés par les paramètres du formulaire. Si aucun paramètre n'est définis, alors la liste comprends tous les patients connus de l'application.
@@ -44,6 +46,7 @@ Pour **remettre les paramètres de recherche à zero**, cliquez sur le bouton no
 Elle affiche également le **nombre de patients** répondant aux paramètres de restriction, ce qui vous permet, de visionner la part que prennent ces patients dans la population totale des patients connus de l'application.
 
 Pour **sélectionner un patient**, cliquez sur le bouton portant son nom dans la liste des patients. Les données du patients s'afficheront automatiquement dans l'application.
+
 
 ####Les patients sélectionnés
 
@@ -56,7 +59,7 @@ Pour **sélectionner un patient**, cliquez sur le bouton portant son nom dans la
 
 Pour définir les **graphiques à afficher**, cliquez sur l'onglet **Données** en haut à droite de la boite de paramètrage. Sa couleur bleue indique que vous êtes en train de définir les graphiques à afficher.
 
-Cette partie contient la liste des différents graphiques disponibles. Si le bouton est **bleu clair**, cela signifie que **le graphique est affiché** dans l'application. Si il est **gris**, qu'**il ne l'est pas**. 
+Cette partie contient la liste des différents graphiques disponibles. Si le bouton est bordé de **bleu**, cela signifie que **le graphique est affiché** dans l'application. Sinon qu'**il ne l'est pas**.
 
 **Cliquez** sur un bouton pour **activer ou désactiver** l'affichage du graphique correspondant au nom sur ce bouton.
 
@@ -65,7 +68,7 @@ Cette partie contient la liste des différents graphiques disponibles. Si le bou
 
 La page principale de l'application affiche des **tableaux** contenant les données des **patients sélectionnés**. Chaque patient a sa **couleur** et un id unique. Ils sont utilisés pour identifier les patients au sein des graphiques.
 
-Les grahiques se lisent comme suit: 
+Les grahiques se lisent comme suit:
 
 *le **titre** stipule la donnée représentée.
 
@@ -79,5 +82,3 @@ Vous pouvez aussi laisser votre curseur sur l'id en desous de la barette pour af
 
 Vous pouvez **visionner cette liste sur tablette ou smartphone** à tous moment en utilisant le bouton représentant **trois lignes roses** en haut à droite de l'écran.
 Utilisez la **croix** à la même place pour **ne plus voir** cette liste.
-
-

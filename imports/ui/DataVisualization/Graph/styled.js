@@ -6,7 +6,7 @@ const components = {
   Container: styled.li`
     display: inline-block;
     position: relative;
-    width: 350px;
+    width: 380px;
     height: auto;
     padding: 16px;
     margin: 0;
@@ -19,15 +19,17 @@ const components = {
     height: 393px;
     padding: 0 0 30px 30px;
     margin: 0 auto;
-    background-color: rgba(0,0,0,.2);
+    background-color: #f9f9f9;
     overflow: hidden;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.2);
+    border-radius: 12px;
   `,
   Title: styled.h4`
     display: block;
     position: relative;
     width: 100%;
     height: auto;
-    padding: 0 0 20px 0;
+    padding: 0 0 40px 0;
     margin: 0;
     text-decoration: underline;
     line-height: 1.7em;

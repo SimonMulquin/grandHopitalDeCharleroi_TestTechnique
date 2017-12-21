@@ -12,7 +12,7 @@ import PatientsSearchForm from '/imports/ui/Forms/ParamsForm/PatientsSearchForm.
 import PatientsList from '/imports/ui/Forms/ParamsForm/PatientsList.jsx';
 
 const ParamsForm = ({ paramsState, graphsToShow, toPatients, toData })=>(
-  <Container>
+  <Container onClick={e => e.stopPropagation()}>
     <Heading>
       <Toggle onClick={()=>(toPatients())} active={paramsState === 'patients'}>Patients</Toggle>
       <Toggle onClick={()=>(toData())} active={paramsState === 'data'}>Données</Toggle>

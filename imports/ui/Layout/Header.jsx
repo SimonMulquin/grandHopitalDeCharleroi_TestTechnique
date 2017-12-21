@@ -29,7 +29,7 @@ const Header = ({toggleMenu, isMenuOpen, toggleParams, isParamsOpen, targetedPat
     <Menu>
       <MainTitle to='/' />
       <ParamsButton onClick={()=>(toggleParams(isParamsOpen))}>
-        {isParamsOpen ? 'retour' : 'paramètres'}
+        {isParamsOpen ? 'Retour' : 'Paramètres'}
       </ParamsButton>
       {targetedPatients().map((patient, index)=>(
         <Target number={index} key={index}>{patient.name}<Delete onClick={()=>(unTarget(targetedPatientsIds, patient.id))}>x</Delete></Target>

@@ -56,16 +56,18 @@ const ParamsButton = styled.button`
   display: block;
   position: absolute;
   left: 140px;
-  top: 0;
-  height: 60px;
+  top: 15px;
+  height: auto;
   width: auto;
   color: black;
   font-weight: bold;
   outline: none;
   border: 0;
-  padding: 6px;
+  padding: 6px 9px;
   margin: 0;
   background: white;
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,.2);
+  border-radius: 6px;
 `;
 
 const Menu = styled.nav`
@@ -191,7 +193,7 @@ const Page = styled.div`
 `;
 
 const Veil = styled.div`
-  display: block;
+  display: ${props=> props.active ? 'block' : 'none'};
   position: fixed;
   left: 0;
   top: 60px;
@@ -210,6 +212,15 @@ const Veil = styled.div`
   }
 `;
 
+const Footer = styled.footer`
+  display: block;
+  position: relative;
+  padding: 20px;
+  margin: 0;
+  text-align: right;
+  width: 100%;
+  height: auto;
+`;
 
 
 export {
@@ -223,5 +234,6 @@ export {
   Icon,
   Delete,
   Page,
-  Veil
+  Veil,
+  Footer
 };

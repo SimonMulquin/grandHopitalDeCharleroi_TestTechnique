@@ -6,9 +6,11 @@ et passe plusieurs informations sur le routing (ex: url, composant à monter, pa
 import { Switch, Route, withRouter } from 'react-router-dom';
 //Permet l'accès à redux
 import { connect } from 'react-redux';
-//Différents du layout
+//valueSet permet d'intéragir avec le store redux
+import { valueSet } from 'meteor/ssrwpo:ssr';
+//Différents composants du layout
 import Header from './Header.jsx';
-import {NotFound, Page, Veil} from './styled.jsx';
+import {NotFound, Page, Veil, Footer} from './styled.jsx';
 import Head from './Head.jsx';
 //Composants à construire dans les routes
 import Home from '/imports/ui/Pages/Home/Home.jsx';
@@ -19,21 +21,19 @@ import ParamsForm from '/imports/ui/Forms/ParamsForm/ParamsForm.jsx';
 const Root = (props) => (
   <div id='base'>
     <Head />
-      <Page>
-        {!props.isParamsOpen ? null :
-          <Veil>
-            <ParamsForm />
-          </Veil>
-        }
-        <Header />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route default render={()=>(<NotFound>Aucune donnée connue pour cette url.</NotFound>)} />
-        </Switch>
-        <footer>
-          Application démo développée par Simon Mulquin
-        </footer>
-      </Page>
+    <Page>
+      <Veil active={props.isParamsOpen} onClick={()=>(props.toggleParams(props.isParamsOpen))}>
+        <ParamsForm />
+      </Veil>
+      <Header />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route default render={()=>(<NotFound>Aucune donnée connue pour cette url.</NotFound>)} />
+      </Switch>
+      <Footer>
+        Application démo développée par Simon Mulquin
+      </Footer>
+    </Page>
   </div>
 );
 
@@ -43,7 +43,9 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  toggleParams(paramsState) {
+    dispatch(valueSet('isParamsOpen', !paramsState));
+  },
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Root));

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 const Container = styled.div`
   display: inline-block;
@@ -10,7 +10,7 @@ const Container = styled.div`
   overflow: hidden;
   padding: 0;
   margin: 0 auto;
-  background-color: #c7c7c7;
+  background-color: #e6e6e6;
   border: solid white 2px;
   border-radius: 12px;
   @media all and (max-width: 1280px) {
@@ -68,9 +68,16 @@ const GraphsList = styled.div`
 const GraphButton = styled.button`
   display: inline-block;
   position: relative;
-  background-color: ${props => props.active ? '#6995c2' : 'rgba(0,0,0,.4)'};
+  background-color: white;
+  border: solid #0F3B70 ${props => props.active ? '2px' : '0'};
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,.2);
+  padding: 6px;
   outline: none;
   margin: 8px;
+  border-radius: 6px;
+  color: ${props => props.active ? '#0F3B70' : 'black'};
+  width: 46%;
+  transition: 0.3s;
 `;
 
 const PatientsToAdd = styled.div`
@@ -89,6 +96,9 @@ const AddPatient = styled.button`
   height: auto;
   padding: 6px;
   margin: 6px;
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,.2);
+  border-radius: 6px;
+  background-color: #fff;
 `;
 const SearchParamsForm = styled.form`
   display: block;
@@ -113,19 +123,39 @@ const SubmitButton = styled.button`
   position: relative;
   width: auto;
   line-height: 40px;
-  height: 40px;
-  padding: 0 6px;
+  padding: 0 12px;
   margin: 6px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,.2);
+  color: #0F3B70;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 6px;
+  outline: none;
+  border: #0F3B70 solid 1px;
+  vertical-align: bottom;
+`;
+
+const resetAnimation = keyframes`
+  0% {transform: rotate(0);}
+  100% {transform: rotate(-360deg);}
 `;
 const ResetButton = styled.button`
   display: inline-block;
   position: relative;
   height: 40px;
   width: 40px;
-  background: #0e0e0e url(/reset.png) no-repeat center;
+  background: transparent url(/reset.png) no-repeat center;
   background-size: cover;
   padding: 8px;
   margin: 6px;
+  border: 0;
+  outline: none;
+  vertical-align: bottom;
+  transition: .3s;
+  &:active {
+    animation: ${resetAnimation} .5s linear;
+  }
 `;
 
 export {
