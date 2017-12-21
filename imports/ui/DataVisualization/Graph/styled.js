@@ -6,11 +6,17 @@ const components = {
   Container: styled.li`
     display: inline-block;
     position: relative;
-    width: 380px;
+    width: 23%;
     height: auto;
-    padding: 16px;
-    margin: 0;
+    padding: 0;
+    margin: 1%;
     text-align: center;
+    @media all and (max-width: 1280px) {
+      width: 48%;
+    }
+    @media all and (max-width: 700px) {
+      width: 98%;
+    }
   `,
   Background: styled.div`
     dislay: inline-block;

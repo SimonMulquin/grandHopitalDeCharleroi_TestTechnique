@@ -110,6 +110,7 @@ const Target = styled.span`
   }}};
   font-weight: 200;
   font-size: 18px;
+  vertical-align: middle;
   @media all and (max-width: 1280px) {
     border-top: black solid 1px;
     margin: 0;
@@ -179,6 +180,9 @@ const Delete = styled.button`
   width: 20px;
   text-align: center;
   margin-left: 12px;
+  vertical-align: middle;
+  font-weight: 700;
+  padding-bottom: 2px;
 `;
 
 //Page
@@ -189,7 +193,7 @@ const Page = styled.div`
   height: auto;
   width: 100%;
   margin: 0;
-  padding: 60px 0 0 0;
+  padding: 70px 0 0 0;
 `;
 
 const Veil = styled.div`

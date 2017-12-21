@@ -12,6 +12,7 @@ const components = {
     margin: 1%;
     border-radius: 10px;
     box-shadow: 0 1px 2px 1px rgba(0,0,0, .6);
+    overflow: hidden;
     background-color: ${props => {switch(props.number){
       case 0:
         return '#2867a7';break;
@@ -38,7 +39,7 @@ const components = {
     margin: 0;
     width: 100%;
     border-top: 1px solid black;
-    background: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.6);
   `,
   Name: styled.h3`
     display: block;
@@ -58,6 +59,7 @@ const components = {
     border-top: 1px solid black;
     text-align: center;
     line-height: 1.6em;
+    background: rgba(255,255,255,.3);
   `,
   Cell: styled.span`
     display: inline-block;
